@@ -223,3 +223,5 @@ test.txt
 email_text.txt
 email_text_test.txt
 email_html.txt
+send_log.txt
+failed_recipients.txt
