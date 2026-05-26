@@ -1,7 +1,9 @@
 import os
+import random
 import re
 import smtplib
 import ssl
+import time
 from datetime import datetime
 from email.message import EmailMessage
 
@@ -108,7 +110,7 @@ with open(send_log_file, "a", encoding="utf-8") as send_log:
         server = connect_server()
         log("Connected and authenticated to SMTP server.", send_log)
 
-        for receiver_email in recipients:
+        for index, receiver_email in enumerate(recipients):
             msg = EmailMessage()
             msg["From"] = sender_email
             msg["To"] = receiver_email
@@ -154,6 +156,11 @@ with open(send_log_file, "a", encoding="utf-8") as send_log:
             except smtplib.SMTPException as exc:
                 failed.append(receiver_email)
                 log(f"SMTP error for {receiver_email}: {exc}", send_log)
+
+            if index < len(recipients) - 1:
+                pause_seconds = random.uniform(2, 8)
+                log(f"Pausing {pause_seconds:.2f}s before next email...", send_log)
+                time.sleep(pause_seconds)
 
     finally:
         if server is not None:

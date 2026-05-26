@@ -225,3 +225,11 @@ email_text_test.txt
 email_html.txt
 send_log.txt
 failed_recipients.txt
+email_html.html
+emailadressen_full.txt
+.DS_Store
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/stuur_mail_lmp.iml
+.idea/vcs.xml
